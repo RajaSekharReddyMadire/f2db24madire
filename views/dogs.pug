@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{"dogName":"coco","dogType":"Shepard","price":20000}, {"dogName":"Rocky","dogType":"Huskey","price":25000}, {"dogName":"cheeta","dogType":"Rottweiler","price":20000}]
+    div(class = 'container-fluid')
+      each item,index in results 
+        div(class = 'row')
+          div(class="col-md-2", onClick=`buy(${index})`) DogName : #{item["dogName"]} 
+          div(class="col-md-2", onClick=`buy(${index})`) DogType : #{item["dogType"]} 
+          div(class="col-md-2", onClick=`buy(${index})`) Price: #{item["price"]}
+           
+  script.
+   function buy(val) {
+     alert(`You purchased item ${val}`)
+   }      
+
+          
