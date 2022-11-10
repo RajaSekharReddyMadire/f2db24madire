@@ -12,6 +12,19 @@ exports.dog_list =async function(req, res) {
     }   
     //res.send('NOT IMPLEMENTED: Dog list'); 
 }; 
+
+// VIEWS 
+// Handle a show all view 
+exports.dog_view_all_Page = async function(req, res) { 
+    try{ 
+        theDogs = await Dog.find(); 
+        res.render('dogs', { title: 'Dog Search Results', results: theDogs }); 
+    } 
+    catch(err){ 
+        res.status(500); 
+        res.send(`{"error": ${err}}`); 
+    }   
+}; 
  
 // for a specific Dog. 
 exports.dog_detail = function(req, res) { 
