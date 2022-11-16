@@ -2,7 +2,9 @@ extends layout
  
 block content 
   h1= title 
-
+if (toShow == null) 
+    h2 No instance to update 
+ else 
   - let dogid = toShow._id 
   - let dog_type = toShow.dogType 
   - let dog_name = toShow.dogName

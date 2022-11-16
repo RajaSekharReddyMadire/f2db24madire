@@ -6,7 +6,7 @@ block content
   
     div(class = 'container-fluid')
       each item,index in items 
-        div(class = 'row')
+        div(class = 'row row-style')
           div(class="col-md-2", onClick=`buy(${index})`) DogName : #{item["dogName"]} 
           div(class="col-md-2", onClick=`buy(${index})`) DogType : #{item["dogType"]} 
           div(class="col-md-2", onClick=`buy(${index})`) Price: #{item["price"]}
