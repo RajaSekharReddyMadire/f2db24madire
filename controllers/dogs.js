@@ -65,11 +65,35 @@ exports.dog_create_post =async function(req, res) {
 }; 
  
 // Handle Dog delete form on DELETE. 
-exports.dog_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Dog delete DELETE ' + req.params.id); 
+exports.dog_delete =async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await Dog.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+    //res.send('NOT IMPLEMENTED: Dog delete DELETE ' + req.params.id); 
 }; 
  
 // Handle Dog update form on PUT. 
-exports.dog_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: Dog update PUT' + req.params.id); 
+exports.dog_update_put =async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Dog.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.dogType)  
+               toUpdate.dogType = req.body.dogType; 
+        if(req.body.dogName) toUpdate.dogName = req.body.dogName; 
+        if(req.body.price) toUpdate.price = req.body.price; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} failed`); 
+    }
+    //res.send('NOT IMPLEMENTED: Dog update PUT' + req.params.id); 
 }; 
