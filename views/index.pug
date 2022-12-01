@@ -1,22 +1,13 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to mypage 
-  p RajasekharaReddy Madire
-  button(type="button" class="btn btn-success", onClick="doBump()") Press Me
-  div(id="bump") Bump the count
-  a(href="dogs") Dogs
-
-  script.
-
-    let count=0
-    let bump=1
-
-    function doBump()
-    {
-      count=bump
-      bump=bump+1
-      document.getElementById('bump').innerHTML=`Count ${count} with bump ${bump}`
-    }
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/dogs") Take me to dogs page
+    br 
+    a(href="/logout") Logout 
   

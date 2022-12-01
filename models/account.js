@@ -6,6 +6,13 @@ const accountSchema = new Schema({
     username: String, 
     password: String 
 }); 
+
+accountSchema.methods.validPassword = function(pwd){
+    console.log(this.password)
+    console.log(this)
+    console.log(pwd)
+    return (this.password==pwd);
+};
  
 accountSchema.plugin(passportLocalMongoose); 
  
