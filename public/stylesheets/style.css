@@ -12,6 +12,10 @@ a {
   width: 120px; 
 } 
 
+button{
+  margin: 10px;
+}
+
 .row-style{
  background-color: rgb(166, 236, 187);
  padding: 2px;

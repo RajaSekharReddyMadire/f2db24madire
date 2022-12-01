@@ -3,16 +3,21 @@ extends layout
 block content
   h1= title
   - var items = results
+
+  button.btn(class="btn-primary col-md-2", onClick=`dispatch(\"/dogs/create\")`) Create
   
-    div(class = 'container-fluid')
-      each item,index in items 
-       - let destination = `dispatch(\"/dogs/update?id=${item._id}\")` 
-        div(class = 'row m-1 row-style')
-          div(class="col-md-2", onClick=`buy(${index})`) DogName : #{item["dogName"]} 
-          div(class="col-md-2", onClick=`buy(${index})`) DogType : #{item["dogType"]} 
-          div(class="col-md-2", onClick=`buy(${index})`) Price: #{item["price"]}
-           
-           button.btn( class="btn-primary ml-1", onclick= destination) Update 
+  div(class = 'container-fluid')
+    each item,index in items 
+      - let updateDestination = `dispatch(\"/dogs/update?id=${item._id}\")` 
+      - let detailDestination = `dispatch(\"/dogs/detail?id=${item._id}\")`
+      - let deleteDestination = `dispatch(\"/dogs/delete?id=${item._id}\")`
+      div(class = 'row m-1 row-style')
+        div(class="col-md-2", onClick=`buy(${index})`) DogName : #{item["dogName"]} 
+        div(class="col-md-2", onClick=`buy(${index})`) DogType : #{item["dogType"]} 
+        div(class="col-md-2", onClick=`buy(${index})`) Price: #{item["price"]}          
+        button.btn( class="btn-primary col-md-1", onclick= updateDestination) Update 
+        button.btn( class="btn-primary col-md-1", onclick= detailDestination) Detail
+        button.btn( class="btn-primary col-md-1", onclick= deleteDestination) Delete
            
   script.
    function buy(val) {

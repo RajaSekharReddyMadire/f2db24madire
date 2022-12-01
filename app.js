@@ -29,7 +29,7 @@ async function recreateDB(){
  
   let instance1 = new Dog({dogName:'Coco',dogType:'Husky',price:25000});
   let instance2 = new Dog({dogName:'Mickey',dogType:'GoldenRetriver',price:30000});
-  let instance3 = new Dog({dogName:'Jack',dogType:'BullDog',price:40000});
+  let instance3 = new Dog({dogName:'Jack',dogType:'BullDog',price:20000});
 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
